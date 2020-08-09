@@ -1,0 +1,52 @@
+package com.example.blesolution;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.app.ProgressDialog;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+
+public class cmathchaptereight extends AppCompatActivity {
+    private Button cmceight_lecturee,cmceight_practisee,cmceight_solutionn;
+    @Override
+
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_cmathchaptereight);
+
+        cmceight_lecturee=(Button) findViewById(R.id.cmceight_lecture) ;
+        cmceight_practisee=(Button) findViewById(R.id.cmceight_practise) ;
+        cmceight_solutionn=(Button) findViewById(R.id.cmceight_solution) ;
+
+        cmceight_lecturee.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+
+                Intent cmceightlecture= new Intent(cmathchaptereight.this, cmceight_lecture.class);
+                startActivity(cmceightlecture);
+            }
+        });
+        cmceight_practisee.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent cmceightpractise= new Intent(cmathchaptereight.this, cmceight_practise.class);
+                startActivity(cmceightpractise);
+            }
+        });
+        cmceight_solutionn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent cmceightsolution= new Intent(cmathchaptereight.this, cmceight_solution.class);
+                startActivity(cmceightsolution);
+            }
+        });
+
+
+    }
+
+
+}
