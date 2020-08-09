@@ -1,0 +1,46 @@
+package com.example.blesolution;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+
+public class cmathchapterthree extends AppCompatActivity {
+    private Button cmcthree_lecturee,cmcthree_practisee,cmcthree_solutionn;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_cmathchapterthree);
+
+        cmcthree_lecturee=(Button) findViewById(R.id.cmcthree_lecture) ;
+        cmcthree_practisee=(Button) findViewById(R.id.cmcthree_practise) ;
+        cmcthree_solutionn=(Button) findViewById(R.id.cmcthree_solution) ;
+
+        cmcthree_lecturee.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent cmcthreelecture= new Intent(cmathchapterthree.this, cmcthree_lecture.class);
+                startActivity(cmcthreelecture);
+            }
+        });
+        cmcthree_practisee.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent cmcthreepractise= new Intent(cmathchapterthree.this, cmcthree_practise.class);
+                startActivity(cmcthreepractise);
+            }
+        });
+        cmcthree_solutionn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent cmcthreesolution= new Intent(cmathchapterthree.this, cmcthree_solution.class);
+                startActivity(cmcthreesolution);
+            }
+        });
+
+
+    }
+}
