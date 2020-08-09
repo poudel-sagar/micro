@@ -1,0 +1,198 @@
+package com.example.blesolution;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.TextView;
+
+public class scienceOne extends AppCompatActivity {
+    ListView list;
+    String titles[]={      "CHAPTER ONE","CHAPTER TWO",       "CHAPTER THREE", "CHAPTER FOUR","CHAPTER FIVE","CHAPTER SIX","CHAPTER SEVEN",   "CHAPTER EIGHT","CHAPTER NINE","CHAPTER TEN","CHAPTER ELEVEN","CHAPTER TWELVE","CHAPTER THIRTEEN","CHAPTER FOURTEEN",     "CHAPTER FIFTEEN", "CHAPTER SIXTEEN",      "CHAPTER SEVENTEEN","CHAPTER EIGHTEEN","CHAPTER NINETEEN", "CHAPTER TWENTY",    "CHAPTER TWENTYONE","CHAPTER TWENTYTWO","CHAPTER TWENTYTHREE",       "CHAPTER TWENTYFOUR","CHAPTER TWENTYFIVE" };
+    String descriptions[]={"MEASUREMENT","FORCE AND VELOCITY","SIMPLE MACHINE","PRESSURE",    "WORK",        "HEAT",       "ENERGY AND POWER","LIGHT",        "SOUND",       "MAGNETISM",  "ELECTRICITY",   "MATTER",        "MIXTURE",         "METALS & NON METALS",  "ACID BASE & SALT","SOME USEFUL CHEMICALS","LIVING BEINGS",    "CELLS & TISSUE",  "LIFE PROCESS",     "STRUCTURE OF EARTH","WEATHER & CLIMATE","EARTH & SPACE",    "ENVIRONMENT & IT'S BALANCE","ED & CONSERVATION", "ENVIRONMENT & SUSTAINABLE DEVELOPMENT" };
+    int imgs[]={R.drawable.unit_one,R.drawable.unit_two,R.drawable.unit_three,R.drawable.unit_four,R.drawable.unit_five,R.drawable.unit_six,R.drawable.unit_seven,R.drawable.unit_eight,R.drawable.unit_nine,R.drawable.unit_ten,R.drawable.unit_eleven,R.drawable.unit_twelve,R.drawable.unit_thirteen,R.drawable.unit_fourteen,R.drawable.unit_fifteen,R.drawable.unit_sixteen,R.drawable.unit_seventeen,R.drawable.unit_eighteen,R.drawable.unit_nineteen,R.drawable.unit_twenty,R.drawable.unit_twentyone,R.drawable.unit_twentytwo,R.drawable.unit_twentythree,R.drawable.unit_twentyfour,R.drawable.unit_twentyfive };
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_science_one);
+        list=findViewById(R.id.sciencelist1);
+
+        MyAdapter adapter=new MyAdapter(this,titles,imgs,descriptions);
+        list.setAdapter(adapter);
+
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                if(position==0)
+                {
+                    Intent sciencechapterrone=new Intent(scienceOne.this,sciencechapterone.class);
+                    startActivity(sciencechapterrone);
+                }
+                if(position==1)
+                {
+                    Intent sciencechapterrtwo=new Intent(scienceOne.this,sciencechaptertwo.class);
+                    startActivity(sciencechapterrtwo);
+                }
+                if(position==2)
+                {
+                    Intent sciencechapterrthree=new Intent(scienceOne.this,sciencechapterthree.class);
+                    startActivity(sciencechapterrthree);
+                }
+                if(position==3)
+                {
+                    Intent sciencechapterrfour=new Intent(scienceOne.this,sciencechapterfour.class);
+                    startActivity(sciencechapterrfour);
+                }
+                if(position==4)
+                {
+                    Intent sciencechapterrfive=new Intent(scienceOne.this,sciencechapterfive.class);
+                    startActivity(sciencechapterrfive);
+                }
+                if(position==5)
+                {
+                    Intent sciencechapterrsix=new Intent(scienceOne.this,sciencechaptersix.class);
+                    startActivity(sciencechapterrsix);
+                }
+                if(position==6)
+                {
+                    Intent sciencechapterrseven=new Intent(scienceOne.this,sciencechapterseven.class);
+                    startActivity(sciencechapterrseven);
+                }
+                if(position==7)
+                {
+                    Intent sciencechapterreight=new Intent(scienceOne.this,sciencechaptereight.class);
+                    startActivity(sciencechapterreight);
+                }
+                if(position==8)
+                {
+                    Intent sciencechapterrnine=new Intent(scienceOne.this,sciencechapternine.class);
+                    startActivity(sciencechapterrnine);
+                }
+                if(position==9)
+                {
+                    Intent sciencechapterrten=new Intent(scienceOne.this,sciencechapterten.class);
+                    startActivity(sciencechapterrten);
+                }
+                if(position==10)
+                {
+                    Intent sciencechapterreleven=new Intent(scienceOne.this,sciencechaptereleven.class);
+                    startActivity(sciencechapterreleven);
+                }
+                if(position==11)
+                {
+                    Intent sciencechapterrtwelve=new Intent(scienceOne.this,sciencechaptertwelve.class);
+                    startActivity(sciencechapterrtwelve);
+                }
+                if(position==12)
+                {
+                    Intent sciencechapterrthirteen=new Intent(scienceOne.this,sciencechapterthirteen.class);
+                    startActivity(sciencechapterrthirteen);
+                }
+                if(position==13)
+                {
+                    Intent sciencechapterrfourteen=new Intent(scienceOne.this,sciencechapterfourteen.class);
+                    startActivity(sciencechapterrfourteen);
+                }
+                if(position==14)
+                {
+                    Intent sciencechapterrfifteen=new Intent(scienceOne.this,sciencechapterfifteen.class);
+                    startActivity(sciencechapterrfifteen);
+                }
+                if(position==15)
+                {
+                    Intent sciencechapterrsixteen=new Intent(scienceOne.this,sciencechaptersixteen.class);
+                    startActivity(sciencechapterrsixteen);
+                }
+                if(position==16)
+                {
+                    Intent sciencechapterrseventeen=new Intent(scienceOne.this,sciencechapterseventeen.class);
+                    startActivity(sciencechapterrseventeen);
+                }
+                if(position==17)
+                {
+                    Intent sciencechapterreighteen=new Intent(scienceOne.this,sciencechaptereighteen.class);
+                    startActivity(sciencechapterreighteen);
+                }
+                if(position==18)
+                {
+                    Intent sciencechapterrnineteen=new Intent(scienceOne.this,sciencechapternineteen.class);
+                    startActivity(sciencechapterrnineteen);
+                }
+                if(position==19)
+                {
+                    Intent sciencechapterrtwenty=new Intent(scienceOne.this,sciencechaptertwenty.class);
+                    startActivity(sciencechapterrtwenty);
+                }
+                if(position==20)
+                {
+                    Intent sciencechapterrtwentyone=new Intent(scienceOne.this,sciencechaptertwentyone.class);
+                    startActivity(sciencechapterrtwentyone);
+                }
+                if(position==21)
+                {
+                    Intent sciencechapterrtwentytwo=new Intent(scienceOne.this,sciencechaptertwentytwo.class);
+                    startActivity(sciencechapterrtwentytwo);
+                }
+                if(position==22)
+                {
+                    Intent sciencechapterrtwentythree=new Intent(scienceOne.this,sciencechaptertwentythree.class);
+                    startActivity(sciencechapterrtwentythree);
+                }
+                if(position==23)
+                {
+                    Intent sciencechapterrtwentyfour=new Intent(scienceOne.this,sciencechaptertwentyfour.class);
+                    startActivity(sciencechapterrtwentyfour);
+                }
+                if(position==24)
+                {
+                    Intent sciencechapterrtwentyfive=new Intent(scienceOne.this,sciencechaptertwentyfive.class);
+                    startActivity(sciencechapterrtwentyfive);
+                }
+
+
+
+            }
+        });
+    }
+    class MyAdapter extends ArrayAdapter<String>{
+        Context context;
+        String myTitles[];
+        String myDescriptions[];
+        int[] imgs;
+        MyAdapter(Context c,String[] titles,int[] imgs,String[] descriptions )
+        {
+            super(c,R.layout.sciencerow,R.id.sciencetext1,titles);
+            this.context=c;
+            this.imgs=imgs;
+            this.myTitles=titles;
+            this.myDescriptions=descriptions;
+        }
+
+        @NonNull
+        @Override
+        public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+            LayoutInflater layoutInflater=(LayoutInflater)getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            View sciencerow=layoutInflater.inflate(R.layout.sciencerow,parent,false);
+            ImageView images=sciencerow.findViewById(R.id.sciencelogo);
+            TextView myTitles=sciencerow.findViewById(R.id.sciencetext1);
+            TextView myDescriptions=sciencerow.findViewById(R.id.sciencetext2);
+            images.setImageResource(imgs[position]);
+            myTitles.setText(titles[position]);
+            myDescriptions.setText(descriptions[position]);
+            return sciencerow;
+        }
+    }
+
+
+}
