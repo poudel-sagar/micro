@@ -1,0 +1,46 @@
+package com.example.blesolution;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+
+public class cmathchapterseven extends AppCompatActivity {
+    private Button cmcseven_lecturee,cmcseven_practisee,cmcseven_solutionn;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_cmathchapterseven);
+
+        cmcseven_lecturee=(Button) findViewById(R.id.cmcseven_lecture) ;
+        cmcseven_practisee=(Button) findViewById(R.id.cmcseven_practise) ;
+        cmcseven_solutionn=(Button) findViewById(R.id.cmcseven_solution) ;
+
+        cmcseven_lecturee.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent cmcsevenlecture= new Intent(cmathchapterseven.this, cmcseven_lecture.class);
+                startActivity(cmcsevenlecture);
+            }
+        });
+        cmcseven_practisee.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent cmcsevenpractise= new Intent(cmathchapterseven.this, cmcseven_practise.class);
+                startActivity(cmcsevenpractise);
+            }
+        });
+        cmcseven_solutionn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent cmcsevensolution= new Intent(cmathchapterseven.this, cmcseven_solution.class);
+                startActivity(cmcsevensolution);
+            }
+        });
+
+
+    }
+}
