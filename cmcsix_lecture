@@ -1,0 +1,93 @@
+package com.example.blesolution;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.app.ProgressDialog;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.github.barteksc.pdfviewer.PDFView;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.io.BufferedInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
+public class cmcsix_lecture extends AppCompatActivity {
+    private TextView text1cmcsix_lecture;
+    private PDFView pdfViewcmcsix_lecture;
+    private ProgressDialog dialog;
+
+    private FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference mref = database.getReference("cmcsix_lecture");
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_cmcsix_lecture);
+        pdfViewcmcsix_lecture = (PDFView) findViewById(R.id.pdfviewcmcsix_lecture);
+        text1cmcsix_lecture = (TextView) findViewById(R.id.text1cmcsix_lecture);
+        dialog=new ProgressDialog(cmcsix_lecture.this);
+        dialog.setTitle("Loading...");
+        dialog.setMessage("Need internet connection");
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.show();
+
+        mref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String value = dataSnapshot.getValue(String.class);
+                text1cmcsix_lecture.setText(value);
+                Toast.makeText(cmcsix_lecture.this, "connected", Toast.LENGTH_SHORT).show();
+                String url = text1cmcsix_lecture.getText().toString();
+                new RetrivePdfStream().execute(url);
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Toast.makeText(cmcsix_lecture.this, "not connected", Toast.LENGTH_SHORT).show();
+
+            }
+
+
+        });}
+    class RetrivePdfStream extends AsyncTask<String,Void, InputStream> {
+
+
+        @Override
+        protected InputStream doInBackground(String... strings) {
+            InputStream inputStream=null;
+            try{
+                URL url=new URL (strings[0]);
+                HttpURLConnection urlConnection=(HttpURLConnection)url.openConnection();
+                if(urlConnection.getResponseCode()==200){
+                    inputStream=new BufferedInputStream(urlConnection.getInputStream());
+                }
+
+            }catch (IOException e){
+                return null;
+            }
+            return inputStream;
+        }
+
+        @Override
+        protected void onPostExecute(InputStream inputStream) {
+            pdfViewcmcsix_lecture.fromStream(inputStream).load();
+
+            if (dialog.isShowing()){
+                dialog.dismiss();
+            }
+        }
+    }
+
+}
