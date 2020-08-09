@@ -1,0 +1,92 @@
+package com.example.blesolution;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.app.ProgressDialog;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.github.barteksc.pdfviewer.PDFView;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.io.BufferedInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
+public class sciencechaptereight extends AppCompatActivity {
+    private TextView sciencechaptereighttext1;
+    private PDFView sciencechaptereightpdfview;
+    private ProgressDialog dialog;
+
+    private FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference mref = database.getReference("sciencechapter_eight");
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_sciencechaptereight);
+        sciencechaptereightpdfview = (PDFView) findViewById(R.id.sciencechaptereightpdfview);
+        sciencechaptereighttext1 = (TextView) findViewById(R.id.sciencechaptereighttext1);
+        dialog=new ProgressDialog(sciencechaptereight.this);
+        dialog.setTitle("Loading...");
+        dialog.setMessage("Need internet connection");
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.show();
+
+        mref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String value = dataSnapshot.getValue(String.class);
+                sciencechaptereighttext1.setText(value);
+                Toast.makeText(sciencechaptereight.this, "connecting to internet", Toast.LENGTH_SHORT).show();
+                String url = sciencechaptereighttext1.getText().toString();
+                new RetrivePdfStream().execute(url);
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Toast.makeText(sciencechaptereight.this, "not connected", Toast.LENGTH_SHORT).show();
+
+            }
+
+
+        });}
+    class RetrivePdfStream extends AsyncTask<String,Void, InputStream> {
+
+
+        @Override
+        protected InputStream doInBackground(String... strings) {
+            InputStream inputStream=null;
+            try{
+                URL url=new URL (strings[0]);
+                HttpURLConnection urlConnection=(HttpURLConnection)url.openConnection();
+                if(urlConnection.getResponseCode()==200){
+                    inputStream=new BufferedInputStream(urlConnection.getInputStream());
+                }
+
+            }catch (IOException e){
+                return null;
+            }
+            return inputStream;
+        }
+
+        @Override
+        protected void onPostExecute(InputStream inputStream) {
+            sciencechaptereightpdfview.fromStream(inputStream).load();
+            if (dialog.isShowing()){
+                dialog.dismiss();
+            }
+        }
+    }
+
+}
